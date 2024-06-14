@@ -2,8 +2,9 @@ import 'package:dartz/dartz.dart';
 import '../../../core/domain/failure_entity.dart';
 import '../domain/customer_repository.dart';
 import 'customer_data_source.dart';
-import 'model/customer_dto.dart';
+import 'model/add_customer_dto.dart';
 import 'model/customer_model.dart';
+import 'model/edit_customer_dto.dart';
 
 class CustomerRepositoryImpl extends CustomerRepository {
   final CustomerDataSource _dataSource;
@@ -12,7 +13,7 @@ class CustomerRepositoryImpl extends CustomerRepository {
 
   @override
   Future<Either<FailureEntity, void>> createCustomer(
-      final CustomerDto dto) async {
+      final AddCustomerDto dto) async {
     final result = await _dataSource.createCustomer(dto);
 
     return result.fold(Left.new, (final value) => const Right(null));
@@ -27,7 +28,7 @@ class CustomerRepositoryImpl extends CustomerRepository {
 
   @override
   Future<Either<FailureEntity, void>> editCustomer(
-      final CustomerDto dto) async {
+      final EditCustomerDto dto) async {
     final result = await _dataSource.editCustomer(dto);
 
     return result.fold(Left.new, (final value) => const Right(null));

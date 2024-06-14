@@ -5,7 +5,8 @@ import 'package:sqflite/sqflite.dart';
 import '../../../core/database/database_helper.dart';
 import '../../../core/domain/failure_entity.dart';
 import '../../../core/utils/app_constant.dart';
-import 'model/customer_dto.dart';
+import 'model/add_customer_dto.dart';
+import 'model/edit_customer_dto.dart';
 
 class CustomerDataSource {
   DatabaseHelper helper;
@@ -24,7 +25,7 @@ class CustomerDataSource {
   }
 
   Future<Either<FailureEntity, dynamic>> createCustomer(
-      final CustomerDto dto) async {
+      final AddCustomerDto dto) async {
     final helper = await DatabaseHelper.instance.getDataBase;
     try {
       final list = await helper.insert(AppConstant.customerTable, dto.toJson(),
@@ -36,7 +37,7 @@ class CustomerDataSource {
   }
 
   Future<Either<FailureEntity, dynamic>> editCustomer(
-      final CustomerDto dto) async {
+      final EditCustomerDto dto) async {
     final helper = await DatabaseHelper.instance.getDataBase;
 
     try {
